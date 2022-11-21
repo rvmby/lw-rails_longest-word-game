@@ -1,0 +1,22 @@
+<div class="container">
+  <div class="bg-light p-5">
+    <h1>New game</h1>
+    <h4>Make the longest word possible, using the following letters</h4>
+
+
+    <div class="d-flex justify-content-center align-middle mb-5">
+      <% @grid.each do |letter| %>
+        <div class="letter-box text-center"><p><%= letter %></p></div>
+      <% end %>
+    </div>
+
+
+    <form action="/score" method ="post" data-turbo="false">
+      <div class="d-flex justify-content-between align-middle mb-5">
+        <input class="form-control" type="text" name="attempt">
+        <input type="hidden" name="grid" value=<%= @grid.join(",") %> >
+        <input class="btn btn-dark" type="submit" value="Play!">
+        <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+    </form>
+  </div>
+</div>
